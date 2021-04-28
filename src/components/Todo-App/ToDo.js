@@ -5,7 +5,7 @@ import ToDoList from './ToDoList';
 const listTodo = [
 	{
 		id: uuid_v4(),
-		task: 'Learn Javascript es6',
+		task: 'Learn Javascript ES6',
 		completed: false
 	},
 	{
@@ -26,10 +26,10 @@ const listTodo = [
 ];
 
 class Todo extends Component {
-	state = {
-		task: '',
-		items: []
-	}
+    state = {
+        task: '',
+        items: []
+    }
 
 	componentDidMount() {
 		// your code...
@@ -46,7 +46,7 @@ class Todo extends Component {
 		});
 	}
 
-	handleOnSubmit = e => {
+	handleOnSubmit = (e) => {
         const taskObj = {
             id: uuid_v4(),
             task: this.state.task,
@@ -55,7 +55,11 @@ class Todo extends Component {
 		e.preventDefault();
 		// your code, use spread operator to add new task
         this.setState({
-            items: [...this.state.items, taskObj]
+            items: [...this.state.items, taskObj],
+            task : ''
+        })
+        
+        this.setState({           
         })
 	}
 
@@ -89,8 +93,8 @@ class Todo extends Component {
 			<div className="Todo">
 				<h1>Todo List:</h1>
 
-				<form onSubmit={this.handleOnSubmit}>
-					<input value={this.state.task} onChange={this.handleOnChange} />
+				<form onSubmit={this.handleOnSubmit} onReset={this.handleOnReset}>
+					<input value={this.state.task} onChange={this.handleOnChange}/>
 				</form>
 
 				<ToDoList
